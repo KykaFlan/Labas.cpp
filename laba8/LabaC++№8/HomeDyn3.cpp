@@ -8,23 +8,23 @@
 void Solve(std::vector<std::vector<int>>& Board, std::vector<std::vector<int>>& Dynamics, std::string& KingsWay) {
     using namespace std;
     int n = Board.size();
-    // Массив для записи направлений
+    // РњР°СЃСЃРёРІ РґР»СЏ Р·Р°РїРёСЃРё РЅР°РїСЂР°РІР»РµРЅРёР№
     vector<vector<char>> Direction(n, vector<char>(n, ' '));
 
     Dynamics[n - 1][n - 1] = Board[n - 1][n - 1];
     Direction[n - 1][n - 1] = ' ';
 
-    // Идём только влево
+    // РРґС‘Рј С‚РѕР»СЊРєРѕ РІР»РµРІРѕ
     for (int j = n - 2; j >= 0; j--) {
         Dynamics[n - 1][j] = Dynamics[n - 1][j + 1] + Board[n - 1][j];
         Direction[n - 1][j] = 'L';
     }
-    // Идём только вверх
+    // РРґС‘Рј С‚РѕР»СЊРєРѕ РІРІРµСЂС…
     for (int i = n - 2; i >= 0; i--) {
         Dynamics[i][n - 1] = Dynamics[i + 1][n - 1] + Board[i][n - 1];
         Direction[i][n - 1] = 'U';
     }
-    // Алгоритм через Максимальное. как в иксэле 18 егэ
+    // РђР»РіРѕСЂРёС‚Рј С‡РµСЂРµР· РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ. РєР°Рє РІ РёРєСЃСЌР»Рµ 18 РµРіСЌ
     for (int i = n - 2; i >= 0; i--) {
         for (int j = n - 2; j >= 0; j--) {
             if (Dynamics[i + 1][j] > Dynamics[i][j + 1]) {
@@ -39,7 +39,7 @@ void Solve(std::vector<std::vector<int>>& Board, std::vector<std::vector<int>>& 
     }
     int i = 0, j = 0;
 
-    // Путь от конца в начало нахожу. А сохраняет так как шёл король.
+    // РџСѓС‚СЊ РѕС‚ РєРѕРЅС†Р° РІ РЅР°С‡Р°Р»Рѕ РЅР°С…РѕР¶Сѓ. Рђ СЃРѕС…СЂР°РЅСЏРµС‚ С‚Р°Рє РєР°Рє С€С‘Р» РєРѕСЂРѕР»СЊ.
     while (i != n-1 ||  j != n-1) {
         if (Direction[i][j] == 'L') {
             KingsWay = 'L' + KingsWay;
@@ -55,20 +55,20 @@ void Solve(std::vector<std::vector<int>>& Board, std::vector<std::vector<int>>& 
 void HomeDyn3() {
     using namespace std;
 	setlocale(LC_ALL, "RU");
-    // Открывает файл для ввода данных
+    // РћС‚РєСЂС‹РІР°РµС‚ С„Р°Р№Р» РґР»СЏ РІРІРѕРґР° РґР°РЅРЅС‹С…
 	ifstream FileInt("HomeDyn3Input.txt");
 	string line;
-    // Вывод того что в файле
+    // Р’С‹РІРѕРґ С‚РѕРіРѕ С‡С‚Рѕ РІ С„Р°Р№Р»Рµ
 	while (getline(FileInt, line)) {
 		cout << line << endl;
 	}
-    // Возвращаемся в начало файла
+    // Р’РѕР·РІСЂР°С‰Р°РµРјСЃСЏ РІ РЅР°С‡Р°Р»Рѕ С„Р°Р№Р»Р°
 	FileInt.clear();    
 	FileInt.seekg(0, ios::beg);
 
 	int N;
 	FileInt >> N;
-    // создаём векторные массивы Доски и Динамики
+    // СЃРѕР·РґР°С‘Рј РІРµРєС‚РѕСЂРЅС‹Рµ РјР°СЃСЃРёРІС‹ Р”РѕСЃРєРё Рё Р”РёРЅР°РјРёРєРё
 	vector<vector<int>> Board(N, vector<int>(N));
     vector<vector<int>> Dynamics(N, vector<int>(N, 0));
 	for (int i = 0; i < N; i++) {
@@ -79,15 +79,15 @@ void HomeDyn3() {
 	FileInt.close();
 
     string KingsWay = "";
-    //вызываем функцию, где будем получать максимальное число и путь
+    //РІС‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЋ, РіРґРµ Р±СѓРґРµРј РїРѕР»СѓС‡Р°С‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ Рё РїСѓС‚СЊ
     Solve(Board, Dynamics, KingsWay);
 
-    // Открываем файл для записи ответа 
+    // РћС‚РєСЂС‹РІР°РµРј С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё РѕС‚РІРµС‚Р° 
     ofstream FileOut("HomeDyn3Output.txt");
-    FileOut << "Максимальная сумма: " << Dynamics[0][0] << endl;
-    FileOut << "Путь: " << KingsWay;
+    FileOut << "РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР°: " << Dynamics[0][0] << endl;
+    FileOut << "РџСѓС‚СЊ: " << KingsWay;
     FileOut.close();
 
-    cout << "Максимальная сумма: " << Dynamics[0][0] << endl;
-    cout << "Путь: " << KingsWay << endl;
+    cout << "РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР°: " << Dynamics[0][0] << endl;
+    cout << "РџСѓС‚СЊ: " << KingsWay << endl;
 }
