@@ -4,24 +4,24 @@
 
 int Expressions(const std::string& s, int& position) {
     using namespace std;
-    // Öèôðà
+    // Ð¦Ð¸Ñ„Ñ€Ð°
     if (s[position] >= '0' && s[position] <= '9') {
         int Number = s[position] - '0';
         position++;
         return Number;
     }
-    // Âûðàæåíèå
+    // Ð’Ñ‹Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ
     if (s[position] == '(') {
         position++;
-        // Âû÷èñëÿåì ëåâîå âûðàæåíèå
+        // Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÑÐµÐ¼ Ð»ÐµÐ²Ð¾Ðµ Ð²Ñ‹Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ
         int LeftNumber = Expressions(s, position);
-        // Ïîëó÷àåì çíàê îïåðàöèè
+        // ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð·Ð½Ð°Ðº Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸
         char Sign = s[position];
         position++;
-        // Âû÷èñëÿåì ïðàâîå âûðàæåíèå
+        // Ð’Ñ‹Ñ‡Ð¸ÑÐ»ÑÐµÐ¼ Ð¿Ñ€Ð°Ð²Ð¾Ðµ Ð²Ñ‹Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ
         int RightNumber = Expressions(s, position);
 
-        // Îæèäàåì çàêðûâàþùóþ ñêîáêó
+        // ÐžÐ¶Ð¸Ð´Ð°ÐµÐ¼ Ð·Ð°ÐºÑ€Ñ‹Ð²Ð°ÑŽÑ‰ÑƒÑŽ ÑÐºÐ¾Ð±ÐºÑƒ
         if (s[position] == ')') {
             position++;
         }
@@ -34,10 +34,10 @@ int Expressions(const std::string& s, int& position) {
 void Recur17(){
 	using namespace std;
     setlocale(LC_ALL, "RU");
-    cout << "Ââåäèòå âûðàæåíèå (áåç ïðîáåëîâ): ";
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‹Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ (Ð±ÐµÐ· Ð¿Ñ€Ð¾Ð±ÐµÐ»Ð¾Ð²): ";
     string expression;
     cin >> expression;
     int position = 0;
     int result = Expressions(expression, position);
-    cout << "Ðåçóëüòàò: " << result << endl;
+    cout << "Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: " << result << endl;
 }
