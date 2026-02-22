@@ -8,45 +8,45 @@ void File8() {
     setlocale(LC_ALL, "RU");
     using namespace std;
     string ExistingFile, CreateFile;
-    cout << "Введите имя существующего файла: ";
+    cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ С„Р°Р№Р»Р°: ";
     cin >> ExistingFile;
-    cout << "Введите имя нового файла: ";
+    cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ РЅРѕРІРѕРіРѕ С„Р°Р№Р»Р°: ";
     cin >> CreateFile;
 
-    // Открываем существующий файл.bin  для чтения
+    // РћС‚РєСЂС‹РІР°РµРј СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С„Р°Р№Р».bin  РґР»СЏ С‡С‚РµРЅРёСЏ
     ifstream File1(ExistingFile, ios::binary);
     if (!File1) {
-        cout << "Файл не найден!" << endl;
+        cout << "Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ!" << endl;
         return;
     }
-    cout << "\nСодержимое файла " << ExistingFile << ":" << endl;
+    cout << "\nРЎРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р° " << ExistingFile << ":" << endl;
     double number;
     while (File1.read((char*)&number, sizeof(double))) {
         cout << number << "; ";
     }
     cout << endl << endl;
 
-    // Возвращаемся в начало файла
+    // Р’РѕР·РІСЂР°С‰Р°РµРјСЃСЏ РІ РЅР°С‡Р°Р»Рѕ С„Р°Р№Р»Р°
     File1.clear();
     File1.seekg(0, ios::beg);
 
     double first, last;
 
-    // Читаем первый элемент
+    // Р§РёС‚Р°РµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
     File1.read((char*)&first, sizeof(double));
 
-    // Читаем последний элемент
+    // Р§РёС‚Р°РµРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
     File1.seekg(-8, ios::end);
     File1.read((char*)&last, sizeof(double));
     File1.close();
 
-    // Создаем новый файл и записываем первое и последнее число
+    // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ С„Р°Р№Р» Рё Р·Р°РїРёСЃС‹РІР°РµРј РїРµСЂРІРѕРµ Рё РїРѕСЃР»РµРґРЅРµРµ С‡РёСЃР»Рѕ
     ofstream File2(CreateFile, ios::binary);
     File2.write((char*)&first, sizeof(double));
     File2.write((char*)&last, sizeof(double));
     File2.close();
 
-    cout << "Из файла " << ExistingFile << " прочитано:" << endl;
-    cout << "первый: " << first << endl;
-    cout << "последний: " << last << endl;
+    cout << "РР· С„Р°Р№Р»Р° " << ExistingFile << " РїСЂРѕС‡РёС‚Р°РЅРѕ:" << endl;
+    cout << "РїРµСЂРІС‹Р№: " << first << endl;
+    cout << "РїРѕСЃР»РµРґРЅРёР№: " << last << endl;
 }
