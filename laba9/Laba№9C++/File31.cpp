@@ -8,15 +8,15 @@ void File31() {
 	using namespace std;
 	setlocale(LC_ALL, "RU");
 	string NameFile;
-	cout << "Введите имя файла c .bin: ";
+	cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р° c .bin: ";
 	cin >> NameFile;
 	ifstream File(NameFile,ios::binary);
 	if (!File) {
-		cout << "Ошибка: файл '" << NameFile << "' не найден!" << endl;
+		cout << "РћС€РёР±РєР°: С„Р°Р№Р» '" << NameFile << "' РЅРµ РЅР°Р№РґРµРЅ!" << endl;
 		return;
 	}
 
-	cout << "\nСодержимое файла " << NameFile << ":" << endl;
+	cout << "\nРЎРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р° " << NameFile << ":" << endl;
 	int number;
 	int count = 0;
 	while (File.read((char*)&number, sizeof(int))) {
@@ -25,38 +25,38 @@ void File31() {
 	}
 	cout << endl << endl;
 
-	// Возвращаемся в начало файла
+	// Р’РѕР·РІСЂР°С‰Р°РµРјСЃСЏ РІ РЅР°С‡Р°Р»Рѕ С„Р°Р№Р»Р°
 	File.clear();
 	File.seekg(0, ios::beg);
 
-	cout << "В файле содержится " << count << " элементов." << endl;
+	cout << "Р’ С„Р°Р№Р»Рµ СЃРѕРґРµСЂР¶РёС‚СЃСЏ " << count << " СЌР»РµРјРµРЅС‚РѕРІ." << endl;
 	if (count <= 50) {
-		cout << "Ошибка: в файле должно быть более 50 элементов" << endl;
+		cout << "РћС€РёР±РєР°: РІ С„Р°Р№Р»Рµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»РµРµ 50 СЌР»РµРјРµРЅС‚РѕРІ" << endl;
 		File.close();
 		return;
 	}
 
 	int QuantityFirstNumbers = count - 50;
-	cout << "Нужно удалить " << QuantityFirstNumbers << " начальных элементов." << endl;
+	cout << "РќСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ " << QuantityFirstNumbers << " РЅР°С‡Р°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ." << endl;
 
 	vector<int> RemainingNumbers(50);
-	// Пропускаем элементы, которые нужно удалить и записываем оставшиеся 50
+	// РџСЂРѕРїСѓСЃРєР°РµРј СЌР»РµРјРµРЅС‚С‹, РєРѕС‚РѕСЂС‹Рµ РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ Рё Р·Р°РїРёСЃС‹РІР°РµРј РѕСЃС‚Р°РІС€РёРµСЃСЏ 50
 	File.seekg(QuantityFirstNumbers * sizeof(int), ios::beg);
 	File.read((char*)RemainingNumbers.data(), 50 * sizeof(int));
 
-	// Закрываем файл и открываем уже с ios::trunc, который предварительно очищает файл для перезаписи 
+	// Р—Р°РєСЂС‹РІР°РµРј С„Р°Р№Р» Рё РѕС‚РєСЂС‹РІР°РµРј СѓР¶Рµ СЃ ios::trunc, РєРѕС‚РѕСЂС‹Р№ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕ РѕС‡РёС‰Р°РµС‚ С„Р°Р№Р» РґР»СЏ РїРµСЂРµР·Р°РїРёСЃРё 
 	File.close();
 	ofstream FileOut(NameFile, ios::binary | ios::trunc);
 	if (!FileOut) {
-		cout << "Ошибка: не удалось перезаписать файл!" << endl;
+		cout << "РћС€РёР±РєР°: РЅРµ СѓРґР°Р»РѕСЃСЊ РїРµСЂРµР·Р°РїРёСЃР°С‚СЊ С„Р°Р№Р»!" << endl;
 		return;
 	}
 
 	FileOut.write((char*)RemainingNumbers.data(), 50 * sizeof(int));
 	FileOut.close();
 	cout << endl;
-	cout << " Было удалено: " << QuantityFirstNumbers << " начальных элементов" << endl;
-	cout << " Теперь файл содержит 50 элементов:" << endl;
+	cout << " Р‘С‹Р»Рѕ СѓРґР°Р»РµРЅРѕ: " << QuantityFirstNumbers << " РЅР°С‡Р°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ" << endl;
+	cout << " РўРµРїРµСЂСЊ С„Р°Р№Р» СЃРѕРґРµСЂР¶РёС‚ 50 СЌР»РµРјРµРЅС‚РѕРІ:" << endl;
 	cout << endl;
 	FileOut.close();
 	cout << " ";
