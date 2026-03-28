@@ -6,23 +6,23 @@
 
 class Stack {
 private:
-    Node* top; // Указатель на вершину стека
+    Node* top; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РІРµСЂС€РёРЅСѓ СЃС‚РµРєР°
 
 public:
-    Stack(); // Конструктор по умолчанию
-    Stack(const Stack& other); // Конструктор копирования
-    ~Stack();// Деструктор
+    Stack(); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+    Stack(const Stack& other); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+    ~Stack();// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
     
-    void push(int val); // Добавление на вершину
-    int pop(); // Извлечение с вершины
-    int peek() const; // Просмотр вершины без удаления
-    void find(int val) const; // Поиск элемента
+    void push(int val); // Р”РѕР±Р°РІР»РµРЅРёРµ РЅР° РІРµСЂС€РёРЅСѓ
+    int pop(); // РР·РІР»РµС‡РµРЅРёРµ СЃ РІРµСЂС€РёРЅС‹
+    int peek() const; // РџСЂРѕСЃРјРѕС‚СЂ РІРµСЂС€РёРЅС‹ Р±РµР· СѓРґР°Р»РµРЅРёСЏ
+    void find(int val) const; // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
 
-    bool isEmpty() const; // Проверка на пустоту
-    Node* getTop() const { return top; } // Получение головы
+    bool isEmpty() const; // РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
+    Node* getTop() const { return top; } // РџРѕР»СѓС‡РµРЅРёРµ РіРѕР»РѕРІС‹
 
-    void fillFromKeyboard(); // Заполнение с клавиатуру
-    void fillFromFile(const std::string& filename); // Заполнение с файла
-    void fillRandom(int count); // Заполение случайно
-    void print() const; // Вывод стека
+    void fillFromKeyboard(); // Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ РєР»Р°РІРёР°С‚СѓСЂСѓ
+    void fillFromFile(const std::string& filename); // Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ С„Р°Р№Р»Р°
+    void fillRandom(int count); // Р—Р°РїРѕР»РµРЅРёРµ СЃР»СѓС‡Р°Р№РЅРѕ
+    void print() const; // Р’С‹РІРѕРґ СЃС‚РµРєР°
 };
