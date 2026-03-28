@@ -4,10 +4,10 @@
 
 
 
-// Конструктор по умолчанию
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 LinkedList::LinkedList() : head(nullptr) {}
 
-// Конструктор копирования
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 LinkedList::LinkedList(const LinkedList& other) : head(nullptr) {
     if (other.head) {
         Node* cur = other.head;
@@ -27,9 +27,9 @@ LinkedList::LinkedList(const LinkedList& other) : head(nullptr) {
     }
 }
 
-// Деструктор
+// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 LinkedList::~LinkedList() {
-    std::cout << "Начинаем очистку списка\n";
+    std::cout << "РќР°С‡РёРЅР°РµРј РѕС‡РёСЃС‚РєСѓ СЃРїРёСЃРєР°\n";
 
     Node* cur = head;
     int count = 0;
@@ -37,16 +37,16 @@ LinkedList::~LinkedList() {
     while (cur) {
         Node* temp = cur;
         cur = cur->next;
-        std::cout << "Удаляем узел с адресом " << temp << ", значение " << temp->data << std::endl;
+        std::cout << "РЈРґР°Р»СЏРµРј СѓР·РµР» СЃ Р°РґСЂРµСЃРѕРј " << temp << ", Р·РЅР°С‡РµРЅРёРµ " << temp->data << std::endl;
         delete temp;
         count++;
     }
 
     head = nullptr;
-    std::cout << "Список очищен. Удалено " << count << " элементов\n";
+    std::cout << "РЎРїРёСЃРѕРє РѕС‡РёС‰РµРЅ. РЈРґР°Р»РµРЅРѕ " << count << " СЌР»РµРјРµРЅС‚РѕРІ\n";
 }
 
-// Добавление элемента в конец списка
+// Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС† СЃРїРёСЃРєР°
 void LinkedList::append(int val) {
     Node* newNode = new Node(val);
     if (!head) {
@@ -61,7 +61,7 @@ void LinkedList::append(int val) {
     }
 }
 
-// Метод для ListWork3 (получение указателя на n-й элемент)
+// РњРµС‚РѕРґ РґР»СЏ ListWork3 (РїРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° n-Р№ СЌР»РµРјРµРЅС‚)
 Node* LinkedList::getNthNode(int n) const {
     if (n <= 0 || isEmpty()) return nullptr;
 
@@ -76,39 +76,39 @@ Node* LinkedList::getNthNode(int n) const {
     return cur;
 }
 
-// Метод для ListWork24 (вставка значения val после каждого k-го элемента)
+// РњРµС‚РѕРґ РґР»СЏ ListWork24 (РІСЃС‚Р°РІРєР° Р·РЅР°С‡РµРЅРёСЏ val РїРѕСЃР»Рµ РєР°Р¶РґРѕРіРѕ k-РіРѕ СЌР»РµРјРµРЅС‚Р°)
 void LinkedList::insertAfterEveryK(int k, int val) {
     if (k <= 0 || isEmpty()) return;
 
     Node* current = head;
     Node* prev = nullptr;
-    int original_pos = 1;  // Считаем позиции исходных элементов
+    int original_pos = 1;  // РЎС‡РёС‚Р°РµРј РїРѕР·РёС†РёРё РёСЃС…РѕРґРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
 
     while (current) {
-        // Сохраняем указатель на следующий исходный элемент
+        // РЎРѕС…СЂР°РЅСЏРµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РёСЃС…РѕРґРЅС‹Р№ СЌР»РµРјРµРЅС‚
         Node* nextOriginal = current->next;
 
-        // Проверяем, нужно ли вставлять после текущего элемента
+        // РџСЂРѕРІРµСЂСЏРµРј, РЅСѓР¶РЅРѕ Р»Рё РІСЃС‚Р°РІР»СЏС‚СЊ РїРѕСЃР»Рµ С‚РµРєСѓС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
         if (original_pos % k == 0) {
-            // Создаем новый узел
+            // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ СѓР·РµР»
             Node* newNode = new Node(val);
 
-            // Вставляем после current
+            // Р’СЃС‚Р°РІР»СЏРµРј РїРѕСЃР»Рµ current
             newNode->next = current->next;
             current->next = newNode;
 
-            // Для отладки
-            std::cout << " Вставили " << val << " после элемента " << original_pos << " (значение " << current->data << ")" << std::endl;
+            // Р”Р»СЏ РѕС‚Р»Р°РґРєРё
+            std::cout << " Р’СЃС‚Р°РІРёР»Рё " << val << " РїРѕСЃР»Рµ СЌР»РµРјРµРЅС‚Р° " << original_pos << " (Р·РЅР°С‡РµРЅРёРµ " << current->data << ")" << std::endl;
         }
 
-        // Переходим к следующему исходному элементу
-        // (пропускаем только что вставленный, если он есть)
+        // РџРµСЂРµС…РѕРґРёРј Рє СЃР»РµРґСѓСЋС‰РµРјСѓ РёСЃС…РѕРґРЅРѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ
+        // (РїСЂРѕРїСѓСЃРєР°РµРј С‚РѕР»СЊРєРѕ С‡С‚Рѕ РІСЃС‚Р°РІР»РµРЅРЅС‹Р№, РµСЃР»Рё РѕРЅ РµСЃС‚СЊ)
         current = nextOriginal;
         original_pos++;
     }
 }
 
-// Метод для ListWork24 (получение указателя на последний элемент)
+// РњРµС‚РѕРґ РґР»СЏ ListWork24 (РїРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚)
 Node* LinkedList::getLastNode() const {
     if (isEmpty()) return nullptr;
 
@@ -119,61 +119,61 @@ Node* LinkedList::getLastNode() const {
     return cur;
 }
 
-// Метод для ListWork61 (вставка элемента с сохранением упорядоченности)
+// РњРµС‚РѕРґ РґР»СЏ ListWork61 (РІСЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅРѕСЃС‚Рё)
 void LinkedList::insertSorted(int val) {
     Node* newNode = new Node(val);
-    // Вставка в начало или пустой список
+    // Р’СЃС‚Р°РІРєР° РІ РЅР°С‡Р°Р»Рѕ РёР»Рё РїСѓСЃС‚РѕР№ СЃРїРёСЃРѕРє
     if (!head || head->data >= val) {
         newNode->next = head;
         head = newNode;
         return;
     }
-    // Поиск места вставки
+    // РџРѕРёСЃРє РјРµСЃС‚Р° РІСЃС‚Р°РІРєРё
     Node* cur = head;
     while (cur->next && cur->next->data < val) {
         cur = cur->next;
     }
-    // Вставка после cur
+    // Р’СЃС‚Р°РІРєР° РїРѕСЃР»Рµ cur
     newNode->next = cur->next;
     cur->next = newNode;
 }
 
-// Проверка списка на пустоту
+// РџСЂРѕРІРµСЂРєР° СЃРїРёСЃРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
 bool LinkedList::isEmpty() const {
     return head == nullptr;
 }
 
-// Поиск элемента по значению
+// РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р° РїРѕ Р·РЅР°С‡РµРЅРёСЋ
 void LinkedList::find(int val) const {
     if (isEmpty()) {
-        std::cout << "Список пуст. Поиск невозможен." << std::endl;
+        std::cout << "РЎРїРёСЃРѕРє РїСѓСЃС‚. РџРѕРёСЃРє РЅРµРІРѕР·РјРѕР¶РµРЅ." << std::endl;
         return;
     }
 
     Node* current = head;
-    int position = 1;  // 1 - начало списка (голова)
+    int position = 1;  // 1 - РЅР°С‡Р°Р»Рѕ СЃРїРёСЃРєР° (РіРѕР»РѕРІР°)
 
     while (current != nullptr) {
         if (current->data == val) {
-            std::cout << "Элемент " << val << " найден в списке!" << std::endl;
-            std::cout << "  Позиция: " << position << " (1 - начало списка)" << std::endl;
-            std::cout << "  Адрес ячейки: " << current << std::endl;
-            std::cout << "  Значение в ячейке: " << current->data << std::endl;         
+            std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ!" << std::endl;
+            std::cout << "  РџРѕР·РёС†РёСЏ: " << position << " (1 - РЅР°С‡Р°Р»Рѕ СЃРїРёСЃРєР°)" << std::endl;
+            std::cout << "  РђРґСЂРµСЃ СЏС‡РµР№РєРё: " << current << std::endl;
+            std::cout << "  Р—РЅР°С‡РµРЅРёРµ РІ СЏС‡РµР№РєРµ: " << current->data << std::endl;         
             return;
         }
         current = current->next;
         position++;
     }
 
-    std::cout << "Элемент " << val << " не найден в списке" << std::endl;
+    std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ" << std::endl;
 }
 
-// Заполнение с клавиатуры
+// Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 void LinkedList::fillFromKeyboard() {
     int n;
-    std::cout << "Введите количество элементов: ";
+    std::cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
     std::cin >> n;
-    std::cout << "Введите " << n << " чисел: ";
+    std::cout << "Р’РІРµРґРёС‚Рµ " << n << " С‡РёСЃРµР»: ";
     for (int i = 0; i < n; ++i) {
         int val;
         std::cin >> val;
@@ -181,11 +181,11 @@ void LinkedList::fillFromKeyboard() {
     }
 }
 
-// Заполнение из файла
+// Р—Р°РїРѕР»РЅРµРЅРёРµ РёР· С„Р°Р№Р»Р°
 void LinkedList::fillFromFile(const std::string& filename) {
     std::ifstream file(filename);
     if (!file) {
-        std::cerr << "Не удалось открыть файл!\n";
+        std::cerr << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»!\n";
         return;
     }
     int val;
@@ -194,17 +194,17 @@ void LinkedList::fillFromFile(const std::string& filename) {
     }
 }
 
-// Заполнение случайно
+// Р—Р°РїРѕР»РЅРµРЅРёРµ СЃР»СѓС‡Р°Р№РЅРѕ
 void LinkedList::fillRandom(int count) {
     for (int i = 0; i < count; ++i) {
         append(rand() % 100);
     }
 }
 
-// Вывод списка
+// Р’С‹РІРѕРґ СЃРїРёСЃРєР°
 void LinkedList::print() const {
     if (isEmpty()) {
-        std::cout << "Список пуст\n";
+        std::cout << "РЎРїРёСЃРѕРє РїСѓСЃС‚\n";
         return;
     }
 
