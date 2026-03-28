@@ -2,10 +2,10 @@
 #include <cstdlib>
 #include <iostream>
 
-// Конструктор по умолчанию
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 Queue::Queue() : head(nullptr), tail(nullptr) {}
 
-// Конструктор копирования
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 Queue::Queue(const Queue& other) : head(nullptr), tail(nullptr) {
     if (other.head) {
         Node* cur = other.head;
@@ -16,9 +16,9 @@ Queue::Queue(const Queue& other) : head(nullptr), tail(nullptr) {
     }
 }
 
-// Деструктор
+// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 Queue::~Queue() {
-    std::cout << "Начинаем очистку очереди\n";
+    std::cout << "РќР°С‡РёРЅР°РµРј РѕС‡РёСЃС‚РєСѓ РѕС‡РµСЂРµРґРё\n";
 
     Node* cur = head;
     int count = 0;
@@ -26,16 +26,16 @@ Queue::~Queue() {
     while (cur) {
         Node* temp = cur;
         cur = cur->next;
-        std::cout << "Удаляем узел с адресом " << temp << ", значение " << temp->data << std::endl;
+        std::cout << "РЈРґР°Р»СЏРµРј СѓР·РµР» СЃ Р°РґСЂРµСЃРѕРј " << temp << ", Р·РЅР°С‡РµРЅРёРµ " << temp->data << std::endl;
         delete temp;
         count++;
     }
 
     head = tail = nullptr;
-    std::cout << "Очередь очищена. Удалено " << count << " элементов\n";
+    std::cout << "РћС‡РµСЂРµРґСЊ РѕС‡РёС‰РµРЅР°. РЈРґР°Р»РµРЅРѕ " << count << " СЌР»РµРјРµРЅС‚РѕРІ\n";
 }
 
-// Добавление в хвост
+// Р”РѕР±Р°РІР»РµРЅРёРµ РІ С…РІРѕСЃС‚
 void Queue::enqueue(int val) {
     Node* newNode = new Node(val);
     if (isEmpty()) {
@@ -47,10 +47,10 @@ void Queue::enqueue(int val) {
     }
 }
 
-// Удаление из головы
+// РЈРґР°Р»РµРЅРёРµ РёР· РіРѕР»РѕРІС‹
 int Queue::dequeue() {
     if (isEmpty()) {
-        std::cerr << "Ошибка: очередь пуста!\n";
+        std::cerr << "РћС€РёР±РєР°: РѕС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°!\n";
         return 0;
     }
     Node* temp = head;
@@ -63,33 +63,33 @@ int Queue::dequeue() {
     return val;
 }
 
-// Просмотр головы
+// РџСЂРѕСЃРјРѕС‚СЂ РіРѕР»РѕРІС‹
 int Queue::front() const {
     if (isEmpty()) {
-        std::cerr << "Очередь пуста!\n";
+        std::cerr << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°!\n";
         return 0;
     }
     return head->data;
 }
 
-// Просмотр хвоста
+// РџСЂРѕСЃРјРѕС‚СЂ С…РІРѕСЃС‚Р°
 int Queue::back() const {
     if (isEmpty()) {
-        std::cerr << "Очередь пуста!\n";
+        std::cerr << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°!\n";
         return 0;
     }
     return tail->data;
 }
 
-// Проверка на пустоту
+// РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
 bool Queue::isEmpty() const {
     return head == nullptr;
 }
 
-// Поиск элемента
+// РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
 void Queue::find(int val) const {
     if (isEmpty()) {
-        std::cout << "Очередь пуста. Поиск невозможен.\n";
+        std::cout << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°. РџРѕРёСЃРє РЅРµРІРѕР·РјРѕР¶РµРЅ.\n";
         return;
     }
 
@@ -98,24 +98,24 @@ void Queue::find(int val) const {
 
     while (current != nullptr) {
         if (current->data == val) {
-            std::cout << "Элемент " << val << " найден в очереди!\n";
-            std::cout << "  Позиция: " << position << " (1 - начало очереди)\n";
-            std::cout << "  Адрес ячейки: " << current << std::endl;
-            std::cout << "  Значение в ячейке: " << current->data << std::endl;
+            std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅР°Р№РґРµРЅ РІ РѕС‡РµСЂРµРґРё!\n";
+            std::cout << "  РџРѕР·РёС†РёСЏ: " << position << " (1 - РЅР°С‡Р°Р»Рѕ РѕС‡РµСЂРµРґРё)\n";
+            std::cout << "  РђРґСЂРµСЃ СЏС‡РµР№РєРё: " << current << std::endl;
+            std::cout << "  Р—РЅР°С‡РµРЅРёРµ РІ СЏС‡РµР№РєРµ: " << current->data << std::endl;
             return;
         }
         current = current->next;
         position++;
     }
-    std::cout << "Элемент " << val << " не найден в очереди\n";
+    std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅРµ РЅР°Р№РґРµРЅ РІ РѕС‡РµСЂРµРґРё\n";
 }
 
-// Заполнение с клавиатуры
+// Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 void Queue::fillFromKeyboard() {
     int n;
-    std::cout << "Введите количество элементов: ";
+    std::cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
     std::cin >> n;
-    std::cout << "Введите " << n << " чисел (от начала к концу): ";
+    std::cout << "Р’РІРµРґРёС‚Рµ " << n << " С‡РёСЃРµР» (РѕС‚ РЅР°С‡Р°Р»Р° Рє РєРѕРЅС†Сѓ): ";
     for (int i = 0; i < n; ++i) {
         int val;
         std::cin >> val;
@@ -123,11 +123,11 @@ void Queue::fillFromKeyboard() {
     }
 }
 
-// Заполнение из файла
+// Р—Р°РїРѕР»РЅРµРЅРёРµ РёР· С„Р°Р№Р»Р°
 void Queue::fillFromFile(const std::string& filename) {
     std::ifstream file(filename);
     if (!file) {
-        std::cerr << "Не удалось открыть файл!\n";
+        std::cerr << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»!\n";
         return;
     }
     int val;
@@ -136,20 +136,20 @@ void Queue::fillFromFile(const std::string& filename) {
     }
 }
 
-// Заполнение случайно
+// Р—Р°РїРѕР»РЅРµРЅРёРµ СЃР»СѓС‡Р°Р№РЅРѕ
 void Queue::fillRandom(int count) {
     for (int i = 0; i < count; ++i) {
         enqueue(rand() % 100);
     }
 }
 
-// Вывод очереди
+// Р’С‹РІРѕРґ РѕС‡РµСЂРµРґРё
 void Queue::print() const {
     if (isEmpty()) {
-        std::cout << "Очередь пуста\n";
+        std::cout << "РћС‡РµСЂРµРґСЊ РїСѓСЃС‚Р°\n";
         return;
     }
-    std::cout << "Очередь: ";
+    std::cout << "РћС‡РµСЂРµРґСЊ: ";
     Node* cur = head;
     while (cur) {
         std::cout << cur->data << " ";
@@ -158,7 +158,7 @@ void Queue::print() const {
     std::cout << std::endl;
 }
 
-// Перемещение элементов
+// РџРµСЂРµРјРµС‰РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ
 int Queue::moveNElementsTo(Queue& dest, int N) {
     if (N <= 0 || isEmpty()) {
         return 0;
