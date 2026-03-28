@@ -5,31 +5,31 @@
 
 class TList {
 private:
-    DNode* First; // Первый элемент
-    DNode* Last; // Последний элемент
-    DNode* Current; // Текущий элемент
+    DNode* First; // РџРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
+    DNode* Last; // РџРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
+    DNode* Current; // РўРµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚
 
 public:
-    TList(); // Конструктор
-    TList(const TList& other); // Конструктор копирования
-    ~TList(); // Деструктор
+    TList(); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+    TList(const TList& other); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+    ~TList(); // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 
-    // Основные операции
-    void append(int val); // Добавление в конец
-    bool isEmpty() const; // Проверка на пустоту
-    void print() const; // Вывод
-    void find(int val) const; // Поиск
+    // РћСЃРЅРѕРІРЅС‹Рµ РѕРїРµСЂР°С†РёРё
+    void append(int val); // Р”РѕР±Р°РІР»РµРЅРёРµ РІ РєРѕРЅРµС†
+    bool isEmpty() const; // РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
+    void print() const; // Р’С‹РІРѕРґ
+    void find(int val) const; // РџРѕРёСЃРє
 
-    // Получать указатели
+    // РџРѕР»СѓС‡Р°С‚СЊ СѓРєР°Р·Р°С‚РµР»Рё
     DNode* getFirst() const { return First; }
     DNode* getLast() const { return Last; }
     DNode* getCurrent() const { return Current; }
 
-    // Процедуры
-    void ToFirst(); // Сделать текущим первый
-    void ToNext(); // Перейти к следующему
-    void SetData(int val); // Установить значение текущему
-    bool IsLast() const; // Проверка последний ли текущий   
+    // РџСЂРѕС†РµРґСѓСЂС‹
+    void ToFirst(); // РЎРґРµР»Р°С‚СЊ С‚РµРєСѓС‰РёРј РїРµСЂРІС‹Р№
+    void ToNext(); // РџРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ
+    void SetData(int val); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ С‚РµРєСѓС‰РµРјСѓ
+    bool IsLast() const; // РџСЂРѕРІРµСЂРєР° РїРѕСЃР»РµРґРЅРёР№ Р»Рё С‚РµРєСѓС‰РёР№   
 
-    void fillRandom(int count); // Случайное заполнение
+    void fillRandom(int count); // РЎР»СѓС‡Р°Р№РЅРѕРµ Р·Р°РїРѕР»РЅРµРЅРёРµ
 };
