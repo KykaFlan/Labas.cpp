@@ -6,29 +6,29 @@
 
 class CircularList {
 private:
-    Node* head;  // указатель на первый элемент
+    Node* head;  // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚
 
 public:
-    CircularList();// Конструктор
-    CircularList(const CircularList& other); // Конструктор копирования
-    ~CircularList(); // Деструктор
+    CircularList();// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+    CircularList(const CircularList& other); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+    ~CircularList(); // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 
-    // Основные операции
-    void append(int val); // Добавление в конец
-    bool isEmpty() const; // Проверка на пустоту
-    Node* getHead() const { return head; }  // Получение указателя головы
-    void find(int val) const; // Поиск элемента по значению
+    // РћСЃРЅРѕРІРЅС‹Рµ РѕРїРµСЂР°С†РёРё
+    void append(int val); // Р”РѕР±Р°РІР»РµРЅРёРµ РІ РєРѕРЅРµС†
+    bool isEmpty() const; // РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
+    Node* getHead() const { return head; }  // РџРѕР»СѓС‡РµРЅРёРµ СѓРєР°Р·Р°С‚РµР»СЏ РіРѕР»РѕРІС‹
+    void find(int val) const; // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р° РїРѕ Р·РЅР°С‡РµРЅРёСЋ
 
-    // Заполнение с клавиатуры и с файла осуществлены при валидации
+    // Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ Рё СЃ С„Р°Р№Р»Р° РѕСЃСѓС‰РµСЃС‚РІР»РµРЅС‹ РїСЂРё РІР°Р»РёРґР°С†РёРё
     void fillRandom(int count);
 
-    // Вывод
+    // Р’С‹РІРѕРґ
     void print() const;
 
-    // Метод для ListWork68
+    // РњРµС‚РѕРґ РґР»СЏ ListWork68
     void processWithStepToFile(int step, const std::string& filename);
 
-    // Метод для Задачи 5
+    // РњРµС‚РѕРґ РґР»СЏ Р—Р°РґР°С‡Рё 5
     void findLongestNegativeSequence() const;
 
 };
