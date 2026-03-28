@@ -2,10 +2,10 @@
 #include <cstdlib>
 #include <iostream>
 
-// Êîíñòðóêòîð
+// Конструктор
 TList::TList() : First(nullptr), Last(nullptr), Current(nullptr) {}
 
-// Êîíñòðóêòîð êîïèðîâàíèÿ
+// Конструктор копирования
 TList::TList(const TList& other) : First(nullptr), Last(nullptr), Current(nullptr) {
     if (other.First) {
         DNode* cur = other.First;
@@ -14,28 +14,28 @@ TList::TList(const TList& other) : First(nullptr), Last(nullptr), Current(nullpt
             cur = cur->next;
         }
     }
-    std::cout << "Êîíñòðóêòîð êîïèðîâàíèÿ TList ñîçäàë êîïèþ\n";
+    std::cout << "Конструктор копирования TList создал копию\n";
 }
 
-// Äåñòðóêòîð
+// Деструктор
 TList::~TList() {
-    std::cout << "Íà÷èíàåì î÷èñòêó ñïèñêà\n";
+    std::cout << "Начинаем очистку списка\n";
     DNode* cur = First;
     int count = 0;
 
     while (cur) {
         DNode* temp = cur;
         cur = cur->next;
-        std::cout << "Óäàëÿåì óçåë ñ àäðåñîì " << temp << ", çíà÷åíèå " << temp->data << std::endl;
+        std::cout << "Удаляем узел с адресом " << temp << ", значение " << temp->data << std::endl;
         delete temp;
         count++;
     }
 
     First = Last = Current = nullptr;
-    std::cout << "Ñïèñîê î÷èùåí. Óäàëåíî " << count << " ýëåìåíòîâ\n";
+    std::cout << "Список очищен. Удалено " << count << " элементов\n";
 }
 
-// Äîáàâëåíèå â êîíåö
+// Добавление в конец
 void TList::append(int val) {
     DNode* newNode = new DNode(val);
 
@@ -49,15 +49,15 @@ void TList::append(int val) {
     }
 }
 
-// Ïðîâåðêà íà ïóñòîòó
+// Проверка на пустоту
 bool TList::isEmpty() const {
     return First == nullptr;
 }
 
-// Âûâîä
+// Вывод
 void TList::print() const {
     if (isEmpty()) {
-        std::cout << "Ñïèñîê ïóñò\n";
+        std::cout << "Список пуст\n";
         return;
     }
 
@@ -69,10 +69,10 @@ void TList::print() const {
     std::cout << std::endl;
 }
 
-// Ïîèñê
+// Поиск
 void TList::find(int val) const {
     if (isEmpty()) {
-        std::cout << "Ñïèñîê ïóñò. Ïîèñê íåâîçìîæåí.\n";
+        std::cout << "Список пуст. Поиск невозможен.\n";
         return;
     }
 
@@ -81,45 +81,45 @@ void TList::find(int val) const {
 
     while (cur) {
         if (cur->data == val) {
-            std::cout << "Ýëåìåíò " << val << " íàéäåí â ñïèñêå!\n";
-            std::cout << "Ïîçèöèÿ: " << position << "\n";
-            std::cout << "Àäðåñ: " << cur << "\n";
-            std::cout << "Çíà÷åíèå: " << cur->data << "\n";
+            std::cout << "Элемент " << val << " найден в списке!\n";
+            std::cout << "Позиция: " << position << "\n";
+            std::cout << "Адрес: " << cur << "\n";
+            std::cout << "Значение: " << cur->data << "\n";
             return;
         }
         cur = cur->next;
         position++;
     }
 
-    std::cout << "Ýëåìåíò " << val << " íå íàéäåí â ñïèñêå\n";
+    std::cout << "Элемент " << val << " не найден в списке\n";
 }
 
-// Ñäåëàòü òåêóùèì ïåðâûé
+// Сделать текущим первый
 void TList::ToFirst() {
     Current = First;
 }
 
-// Ïåðåéòè ê ñëåäóþùåìó
+// Перейти к следующему
 void TList::ToNext() {
     if (Current && Current->next) {
         Current = Current->next;
     }
 }
 
-// Óñòàíîâèòü çíà÷åíèå òåêóùåìó
+// Установить значение текущему
 void TList::SetData(int val) {
     if (Current) {
         Current->data = val;
     }
 }
 
-// Ïðîâåðêà ïîñëåäíèé ëè òåêóùèé  
+// Проверка последний ли текущий  
 bool TList::IsLast() const {
     return Current == Last;
 }
 
 
-// Ñëó÷àéíîå çàïîëíåíèå
+// Случайное заполнение
 void TList::fillRandom(int count) {
     for (int i = 0; i < count; ++i) {
         append(rand() % 100);
