@@ -3,10 +3,10 @@
 #include <ctime>
 #include <iostream>
 
-// Конструктор по умолчанию - создаем пустой стек
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - СЃРѕР·РґР°РµРј РїСѓСЃС‚РѕР№ СЃС‚РµРє
 Stack::Stack() : top(nullptr) {}
 
-// Конструктор копированя
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅСЏ
 Stack::Stack(const Stack& other) : top(nullptr) {
     if (other.top) {
         Stack temp;
@@ -20,31 +20,31 @@ Stack::Stack(const Stack& other) : top(nullptr) {
         }
     }
 }
-// Деструктор
+// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 Stack::~Stack() {
-    std::cout << "Начинаем очистку стека\n";
+    std::cout << "РќР°С‡РёРЅР°РµРј РѕС‡РёСЃС‚РєСѓ СЃС‚РµРєР°\n";
     int count = 0;
     while (!isEmpty()) {
         Node* temp = top;
         top = top->next;
-        std::cout << "Удаляем узел с адресом " << temp << ", значение " << temp->data << std::endl;
+        std::cout << "РЈРґР°Р»СЏРµРј СѓР·РµР» СЃ Р°РґСЂРµСЃРѕРј " << temp << ", Р·РЅР°С‡РµРЅРёРµ " << temp->data << std::endl;
         delete temp;
         count++;
     }
-    std::cout << "Стек очищен. Удалено " << count << " элементов." << std::endl;
+    std::cout << "РЎС‚РµРє РѕС‡РёС‰РµРЅ. РЈРґР°Р»РµРЅРѕ " << count << " СЌР»РµРјРµРЅС‚РѕРІ." << std::endl;
 }
 
-// Добавление на вершину
+// Р”РѕР±Р°РІР»РµРЅРёРµ РЅР° РІРµСЂС€РёРЅСѓ
 void Stack::push(int val) {
     Node* newNode = new Node(val);
     newNode->next = top;
     top = newNode;
 }
 
-// Извлечение с вершины
+// РР·РІР»РµС‡РµРЅРёРµ СЃ РІРµСЂС€РёРЅС‹
 int Stack::pop() {
     if (isEmpty()) {
-        std::cerr << "Ошибка: стек пуст!\n";
+        std::cerr << "РћС€РёР±РєР°: СЃС‚РµРє РїСѓСЃС‚!\n";
         return 0;
     }
     Node* temp = top;
@@ -54,23 +54,23 @@ int Stack::pop() {
     return val;
 }
 
-// Просмотр вершины без удаления
+// РџСЂРѕСЃРјРѕС‚СЂ РІРµСЂС€РёРЅС‹ Р±РµР· СѓРґР°Р»РµРЅРёСЏ
 int Stack::peek() const {
     if (isEmpty()) {
-        std::cerr << "Стек пуст!\n";
+        std::cerr << "РЎС‚РµРє РїСѓСЃС‚!\n";
         return 0;
     }
     return top->data;
 }
 
-// Проверка на пустоту стека
+// РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ СЃС‚РµРєР°
 bool Stack::isEmpty() const {
     return top == nullptr;
 }
-// Поиск элемента
+// РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
 void Stack::find(int val) const {
     if (isEmpty()) {
-        std::cout << "Стек пуст. Поиск невозможен.\n";
+        std::cout << "РЎС‚РµРє РїСѓСЃС‚. РџРѕРёСЃРє РЅРµРІРѕР·РјРѕР¶РµРЅ.\n";
         return;
     }
 
@@ -79,55 +79,55 @@ void Stack::find(int val) const {
 
     while (current != nullptr) {
         if (current->data == val) {
-            std::cout << "Элемент " << val << " найден в стеке!\n";
-            std::cout << "  Позиция: " << position << std::endl;
-            std::cout << "  Адрес ячейки: " << current << std::endl;
-            std::cout << "  Значение в ячейке: " << current->data << std::endl;
+            std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅР°Р№РґРµРЅ РІ СЃС‚РµРєРµ!\n";
+            std::cout << "  РџРѕР·РёС†РёСЏ: " << position << std::endl;
+            std::cout << "  РђРґСЂРµСЃ СЏС‡РµР№РєРё: " << current << std::endl;
+            std::cout << "  Р—РЅР°С‡РµРЅРёРµ РІ СЏС‡РµР№РєРµ: " << current->data << std::endl;
             return;
         }
         current = current->next;
         position++;
     }
-    std::cout << "Элемент " << val << " не найден в стеке\n";
+    std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅРµ РЅР°Р№РґРµРЅ РІ СЃС‚РµРєРµ\n";
 }
-// Заполнение с клавиатуру
+// Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ РєР»Р°РІРёР°С‚СѓСЂСѓ
 void Stack::fillFromKeyboard() {
     int n;
-    std::cout << "Введите количество элементов: ";
+    std::cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
     std::cin >> n;
-    std::cout << "Введите " << n << " чисел (последнее будет вершиной): ";
+    std::cout << "Р’РІРµРґРёС‚Рµ " << n << " С‡РёСЃРµР» (РїРѕСЃР»РµРґРЅРµРµ Р±СѓРґРµС‚ РІРµСЂС€РёРЅРѕР№): ";
     for (int i = 0; i < n; ++i) {
         int val;
         std::cin >> val;
         push(val);
     }
 }
-// Заполнение с файла
+// Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ С„Р°Р№Р»Р°
 void Stack::fillFromFile(const std::string& filename) {
     std::ifstream file(filename);
     if (!file) {
-        std::cerr << "Не удалось открыть файл!" << std::endl;
+        std::cerr << "РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»!" << std::endl;
         return;
     }
     int val;
     while (file >> val) {
         push(val);
     }
-    std::cout << "Загружено " << (!isEmpty() ? "несколько" : "0") << " элементов\n";
+    std::cout << "Р—Р°РіСЂСѓР¶РµРЅРѕ " << (!isEmpty() ? "РЅРµСЃРєРѕР»СЊРєРѕ" : "0") << " СЌР»РµРјРµРЅС‚РѕРІ\n";
 }
-// Заполение случайно
+// Р—Р°РїРѕР»РµРЅРёРµ СЃР»СѓС‡Р°Р№РЅРѕ
 void Stack::fillRandom(int count) {
     for (int i = 0; i < count; ++i) {
         push(rand() % 100);
     }
 }
-// Вывод стека
+// Р’С‹РІРѕРґ СЃС‚РµРєР°
 void Stack::print() const {
     if (isEmpty()) {
-        std::cout << "Стек пуст\n";
+        std::cout << "РЎС‚РµРє РїСѓСЃС‚\n";
         return;
     }
-    std::cout << "Стек (вершина слева): ";
+    std::cout << "РЎС‚РµРє (РІРµСЂС€РёРЅР° СЃР»РµРІР°): ";
     Node* cur = top;
     while (cur) {
         std::cout << cur->data << " ";
