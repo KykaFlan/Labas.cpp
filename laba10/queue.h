@@ -6,31 +6,31 @@
 
 class Queue {
 private:
-    Node* head; // Указатель на начало очереди
-    Node* tail; // Указатель на конец очереди
+    Node* head; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»Рѕ РѕС‡РµСЂРµРґРё
+    Node* tail; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РєРѕРЅРµС† РѕС‡РµСЂРµРґРё
 
 public:
-    // Конструкторы и деструктор
-    Queue(); // Конструктор по умолчанию
-    Queue(const Queue& other); // Конструктор копирования
-    ~Queue(); // Деструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+    Queue(); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+    Queue(const Queue& other); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+    ~Queue(); // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 
 
-    void enqueue(int val); // Добавление в хвост
-    int dequeue(); // Удаление из головы
-    int front() const; // Просмотр головы
-    int back() const; // Просмотр хвоста
+    void enqueue(int val); // Р”РѕР±Р°РІР»РµРЅРёРµ РІ С…РІРѕСЃС‚
+    int dequeue(); // РЈРґР°Р»РµРЅРёРµ РёР· РіРѕР»РѕРІС‹
+    int front() const; // РџСЂРѕСЃРјРѕС‚СЂ РіРѕР»РѕРІС‹
+    int back() const; // РџСЂРѕСЃРјРѕС‚СЂ С…РІРѕСЃС‚Р°
     bool isEmpty() const;
-    void find(int val) const; // Поиск элемента
+    void find(int val) const; // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
 
-    // Получение головы и хваста очереди
+    // РџРѕР»СѓС‡РµРЅРёРµ РіРѕР»РѕРІС‹ Рё С…РІР°СЃС‚Р° РѕС‡РµСЂРµРґРё
     Node* getHead() const { return head; }
     Node* getTail() const { return tail; }
 
-    void fillFromKeyboard(); // Заполнение с клавиатуру
-    void fillFromFile(const std::string& filename); // Заполнение с файла
-    void fillRandom(int count); // Заполение случайно
-    void print() const; // Вывод очереди
+    void fillFromKeyboard(); // Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ РєР»Р°РІРёР°С‚СѓСЂСѓ
+    void fillFromFile(const std::string& filename); // Р—Р°РїРѕР»РЅРµРЅРёРµ СЃ С„Р°Р№Р»Р°
+    void fillRandom(int count); // Р—Р°РїРѕР»РµРЅРёРµ СЃР»СѓС‡Р°Р№РЅРѕ
+    void print() const; // Р’С‹РІРѕРґ РѕС‡РµСЂРµРґРё
 
-    int moveNElementsTo(Queue& dest, int N); // Перемещение элементов
+    int moveNElementsTo(Queue& dest, int N); // РџРµСЂРµРјРµС‰РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ
 };
