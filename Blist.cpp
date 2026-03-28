@@ -2,64 +2,64 @@
 #include <cstdlib>
 #include <iostream>
 
-// Конструктор
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 BarrierList::BarrierList() {
-    // Создаем барьерный элемент
-    Barrier = new DNode(0); // барьер со значением 0 (можно выставить любое значение)
-    Barrier->next = Barrier; // пока список пуст, барьер указывает сам на себя
+    // РЎРѕР·РґР°РµРј Р±Р°СЂСЊРµСЂРЅС‹Р№ СЌР»РµРјРµРЅС‚
+    Barrier = new DNode(0); // Р±Р°СЂСЊРµСЂ СЃРѕ Р·РЅР°С‡РµРЅРёРµРј 0 (РјРѕР¶РЅРѕ РІС‹СЃС‚Р°РІРёС‚СЊ Р»СЋР±РѕРµ Р·РЅР°С‡РµРЅРёРµ)
+    Barrier->next = Barrier; // РїРѕРєР° СЃРїРёСЃРѕРє РїСѓСЃС‚, Р±Р°СЂСЊРµСЂ СѓРєР°Р·С‹РІР°РµС‚ СЃР°Рј РЅР° СЃРµР±СЏ
     Barrier->prev = Barrier;
-    Current = Barrier; // текущим становится барьер
+    Current = Barrier; // С‚РµРєСѓС‰РёРј СЃС‚Р°РЅРѕРІРёС‚СЃСЏ Р±Р°СЂСЊРµСЂ
 }
 
-// Конструктор копирования
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 BarrierList::BarrierList(const BarrierList& other) {
-    // Создаем барьер
+    // РЎРѕР·РґР°РµРј Р±Р°СЂСЊРµСЂ
     Barrier = new DNode(0);
     Barrier->next = Barrier;
     Barrier->prev = Barrier;
     Current = Barrier;
 
-    // Копируем реальные элементы
+    // РљРѕРїРёСЂСѓРµРј СЂРµР°Р»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹
     if (other.Barrier->next != other.Barrier) {
         DNode* cur = other.Barrier->next;
         while (cur != other.Barrier) {
-            append(cur->data);  // добавляем элементы
+            append(cur->data);  // РґРѕР±Р°РІР»СЏРµРј СЌР»РµРјРµРЅС‚С‹
             cur = cur->next;
         }
     }
-    std::cout << "Конструктор копирования BarrierList создал копию\n";
+    std::cout << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ BarrierList СЃРѕР·РґР°Р» РєРѕРїРёСЋ\n";
 }
 
-// Деструктор
+// Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 BarrierList::~BarrierList() {
-    std::cout << "Начинаем очистку списка с барьером\n";
+    std::cout << "РќР°С‡РёРЅР°РµРј РѕС‡РёСЃС‚РєСѓ СЃРїРёСЃРєР° СЃ Р±Р°СЂСЊРµСЂРѕРј\n";
 
-    // Удаляем все реальные элементы
+    // РЈРґР°Р»СЏРµРј РІСЃРµ СЂРµР°Р»СЊРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹
     DNode* cur = Barrier->next;
     int count = 0;
 
     while (cur != Barrier) {
         DNode* temp = cur;
         cur = cur->next;
-        std::cout << "Удаляем узел с адресом " << temp << ", значение " << temp->data << std::endl;
+        std::cout << "РЈРґР°Р»СЏРµРј СѓР·РµР» СЃ Р°РґСЂРµСЃРѕРј " << temp << ", Р·РЅР°С‡РµРЅРёРµ " << temp->data << std::endl;
         delete temp;
         count++;
     }
 
-    // Удаляем барьер
-    std::cout << "Удаляем барьер с адресом " << Barrier << std::endl;
+    // РЈРґР°Р»СЏРµРј Р±Р°СЂСЊРµСЂ
+    std::cout << "РЈРґР°Р»СЏРµРј Р±Р°СЂСЊРµСЂ СЃ Р°РґСЂРµСЃРѕРј " << Barrier << std::endl;
     delete Barrier;
 
     Barrier = nullptr;
     Current = nullptr;
-    std::cout << "Список очищен. Удалено " << count << " реальных элементов + барьер\n";
+    std::cout << "РЎРїРёСЃРѕРє РѕС‡РёС‰РµРЅ. РЈРґР°Р»РµРЅРѕ " << count << " СЂРµР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ + Р±Р°СЂСЊРµСЂ\n";
 }
 
-// Добавление в конец
+// Р”РѕР±Р°РІР»РµРЅРёРµ РІ РєРѕРЅРµС†
 void BarrierList::append(int val) {
     DNode* newNode = new DNode(val);
 
-    if (Barrier->next == Barrier) {  // список пуст
+    if (Barrier->next == Barrier) {  // СЃРїРёСЃРѕРє РїСѓСЃС‚
         Barrier->next = newNode;
         Barrier->prev = newNode;
         newNode->next = Barrier;
@@ -74,12 +74,12 @@ void BarrierList::append(int val) {
     }
 }
 
-// Проверка на пустоту
+// РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕС‚Сѓ
 bool BarrierList::isEmpty() const {
-    return Barrier->next == Barrier;  // нет элементов (не считая барьера)
+    return Barrier->next == Barrier;  // РЅРµС‚ СЌР»РµРјРµРЅС‚РѕРІ (РЅРµ СЃС‡РёС‚Р°СЏ Р±Р°СЂСЊРµСЂР°)
 }
 
-// Получить количество реальных элементов
+// РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
 int BarrierList::getSize() const {
     int count = 0;
     DNode* cur = Barrier->next;
@@ -90,10 +90,10 @@ int BarrierList::getSize() const {
     return count;
 }
 
-// Вывод
+// Р’С‹РІРѕРґ
 void BarrierList::print() const {
     if (isEmpty()) {
-        std::cout << "Список пуст\n";
+        std::cout << "РЎРїРёСЃРѕРє РїСѓСЃС‚\n";
         return;
     }
 
@@ -105,10 +105,10 @@ void BarrierList::print() const {
     std::cout << std::endl;
 }
 
-// Поиск
+// РџРѕРёСЃРє
 void BarrierList::find(int val) const {
     if (isEmpty()) {
-        std::cout << "Список пуст. Поиск невозможен.\n";
+        std::cout << "РЎРїРёСЃРѕРє РїСѓСЃС‚. РџРѕРёСЃРє РЅРµРІРѕР·РјРѕР¶РµРЅ.\n";
         return;
     }
 
@@ -117,47 +117,47 @@ void BarrierList::find(int val) const {
 
     while (cur != Barrier) {
         if (cur->data == val) {
-            std::cout << "Элемент " << val << " найден в списке!\n";
-            std::cout << "Позиция: " << position << "\n";
-            std::cout << "Адрес: " << cur << std::endl;
-            std::cout << "Значение: " << cur->data << std::endl;
+            std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ!\n";
+            std::cout << "РџРѕР·РёС†РёСЏ: " << position << "\n";
+            std::cout << "РђРґСЂРµСЃ: " << cur << std::endl;
+            std::cout << "Р—РЅР°С‡РµРЅРёРµ: " << cur->data << std::endl;
             return;
         }
         cur = cur->next;
         position++;
     }
 
-    std::cout << "Элемент " << val << " не найден в списке\n";
+    std::cout << "Р­Р»РµРјРµРЅС‚ " << val << " РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ\n";
 }
 
-// Сделать текущим первый реальный элемент
+// РЎРґРµР»Р°С‚СЊ С‚РµРєСѓС‰РёРј РїРµСЂРІС‹Р№ СЂРµР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚
 void BarrierList::LBTofirst() {
-    Current = Barrier->next;  // первый реальный элемент после барьера
+    Current = Barrier->next;  // РїРµСЂРІС‹Р№ СЂРµР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РїРѕСЃР»Рµ Р±Р°СЂСЊРµСЂР°
 }
 
-// Перейти к следующему
+// РџРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ
 void BarrierList::LBTNext() {
     if (Current->next != Barrier) {
         Current = Current->next;
     }
 }
 
-// Установить значение текущему
+// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ С‚РµРєСѓС‰РµРјСѓ
 void BarrierList::LBSetData(int val) {
-    if (Current != Barrier) {  // проверка, что это не барьер
+    if (Current != Barrier) {  // РїСЂРѕРІРµСЂРєР°, С‡С‚Рѕ СЌС‚Рѕ РЅРµ Р±Р°СЂСЊРµСЂ
         Current->data = val;
     }
 }
 
-// Проверка является ли текущий барьером
+// РџСЂРѕРІРµСЂРєР° СЏРІР»СЏРµС‚СЃСЏ Р»Рё С‚РµРєСѓС‰РёР№ Р±Р°СЂСЊРµСЂРѕРј
 bool BarrierList::IsBarrier() {
     return Current == Barrier;
 }
 
-// Случайное заполнение
+// РЎР»СѓС‡Р°Р№РЅРѕРµ Р·Р°РїРѕР»РЅРµРЅРёРµ
 void BarrierList::fillRandom(int count) {
     for (int i = 0; i < count; ++i) {
         append(rand() % 100);
     }
-    std::cout << "Сгенерировано " << count << " случайных чисел\n";
+    std::cout << "РЎРіРµРЅРµСЂРёСЂРѕРІР°РЅРѕ " << count << " СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»\n";
 }
